@@ -27,7 +27,7 @@ import java.util.concurrent.Executor;
 public abstract class BaseFilterSurfaceProcessor implements SurfaceProcessor, SurfaceTexture.OnFrameAvailableListener {
     private static int TEXNAME = 1;
 
-    private final String LOG = getClass().getSimpleName();
+    protected final String LOG = getClass().getSimpleName();
 
     String threadName = getClass().getSimpleName() + "-Thread";
     Context context;
