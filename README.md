@@ -1,0 +1,2 @@
+# camerax_CameraEffect_SurfaceProcessor_sample
+CameraEffect SurfaceProcessor
