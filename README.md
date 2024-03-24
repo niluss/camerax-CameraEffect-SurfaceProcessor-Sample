@@ -2,7 +2,7 @@
 CameraEffect SurfaceProcessor Example
 by Lynnus N. Tan
 
-- This is Java example snippet based on androidx ToneMappingSurfaceProcessor.kt and EffectsFragment.kt to add a black and white CameraEffect to ImageCapture, VideCapture and Preview.
+- This is Java example snippet based on androidx ToneMappingSurfaceProcessor.kt and EffectsFragment.kt to add a black and white CameraEffect to ImageCapture, VideCapture and Preview using OpenGlRenderer and fragment shader.
 - This is not a fully working example, and you have to insert it in your code.
 
 - This is in Java 1.8 source and target
