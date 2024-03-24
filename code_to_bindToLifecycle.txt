@@ -1,0 +1,50 @@
+/**
+* This is a sample CameraEffect Black and White effect.
+* This is tested on minSdk 31 and targetSdkVersion 34
+* This is in Java 1.8 source and target
+* 
+*/
+
+// See BaseFilterSurfaceProcessor and CameraEffectProxy in the other files in this directory
+BaseFilterSurfaceProcessor cameraEffectFilter = new BwFilter(getApplicationContext());
+CameraEffectProxy cameraEffect = new CameraEffectProxy(
+        IMAGE_CAPTURE|PREVIEW|VIDEO_CAPTURE,
+        cameraEffectFilter.getGlExecutor(),
+        cameraEffectFilter,
+        (Consumer<Throwable>) throwable -> {
+            String msg = "BW Filter init failed";
+            Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
+        });
+
+List<CameraEffect> effects = new ArrayList<>();
+if (cameraEffect != null) {
+    effects.add(cameraEffect);
+}
+
+/**
+* I do Java Reflection to call the specific bindToLifecycle that accepts a list of CameraEffect. 
+* This is because calling individual imageCapture.setEffect/videoCapture.setEffect/preview.setEffect didn't work for me.
+* The specific bindToLifecycle I need (shown on the androidx EffectsFragment.kt sample) is hidden inside. So need to enable it manually with setAccessible(True)
+*/
+// call this setCameraOperatingMode, as it is called inside the exposed bindToLifecycle
+Method m_setCameraOperatingMode = cameraProvider.getClass().getDeclaredMethod("setCameraOperatingMode", int.class);
+m_setCameraOperatingMode.setAccessible(true);
+m_setCameraOperatingMode.invoke(cameraProvider, CAMERA_OPERATING_MODE_SINGLE);
+
+Method m_bindToLifecycle = cameraProvider.getClass().getDeclaredMethod(
+        "bindToLifecycle",
+        LifecycleOwner.class,
+        CameraSelector.class,
+        ViewPort.class,
+        List.class,
+        UseCase[].class);
+m_bindToLifecycle.setAccessible(true);
+
+// invoke the bindToLifecycle, replacing the usual "camera = cameraProvider.bindToLifecycle(this, extensionCameraSelector, imageCapture, preview, videoCapture);" call
+camera = (Camera) m_bindToLifecycle.invoke(
+        cameraProvider,
+        this,
+        extensionCameraSelector,
+        null,
+        effects,
+        new UseCase[]{imageCapture, preview, videoCapture});
