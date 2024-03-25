@@ -6,7 +6,7 @@ by Lynnus N. Tan
 - This is not a fully working example, and you have to insert it in your code.
 
 - This is in Java 1.8 source and target
-- This is tested on minSdk 31 and targetSdkVersion 34
+- This is tested on minSdk 31, targetSdkVersion 34, and CameraX version 1.3.2
 - There will be warnings like "can only be called from within the same library (androidx.camera:camera-core)" but it will build and run fine. I don't understand this myself why the Classes and methods are not accessible.
 
 See the following files:
