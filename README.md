@@ -14,3 +14,7 @@ See the following files:
 - BaseFilterSurfaceProcessor.java for OpenGlRenderer related code
 - BwFilter.java for the implementation of the fragment shader. You can create more classes like this
 - CameraEffectProxy.java 
+
+Observations:
+- If I bind all Preview, ImageCapture and Video, I get a cropped view/capture. The effect works on all 3 but what I see is cropped.
+- If I bind only Preview and InageCapture, then I see the full image (you still need to target the 3, PREVIEW | IMAGE_CAPTURE | VIDEO_CAPTURE).
