@@ -1,5 +1,5 @@
-# camerax_CameraEffect_SurfaceProcessor_sample
-CameraEffect SurfaceProcessor Example
+# Camerax CameraEffect SurfaceProcessor sample using OpenGL/GLSL (Java)
+CameraEffect SurfaceProcessor Example using OpenGL/GLSL Fragment Shader in Java
 by Lynnus N. Tan
 
 - This is Java example snippet based on androidx ToneMappingSurfaceProcessor.kt and EffectsFragment.kt to add a black and white CameraEffect to ImageCapture, VideCapture and Preview using OpenGlRenderer and fragment shader.
